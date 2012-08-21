@@ -1,0 +1,45 @@
+<mockup version="1.0" skin="sketch" measuredW="1072" measuredH="404" mockupW="295" mockupH="120">
+  <controls>
+    <control controlID="0" controlTypeID="__group__" x="777" y="284" w="295" h="120" measuredW="295" measuredH="120" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="295" h="120" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="0"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TextInput" x="1" y="1" w="294" h="-1" measuredW="182" measuredH="27" zOrder="1" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Delete%20confirmation%3A%20%22subtitle%22</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::Icon" x="272" y="6" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="2" locked="false" isInGroup="0">
+          <controlProperties>
+            <href>View%26bm%3BView.bmml%26bm%3BView.bmml%26bm%3BView.bmml</href>
+            <icon>XIcon%7Cxsmall</icon>
+            <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22272%2C6%2C288%2C22%22%20href%3D%22View.bmml%22%20alt%3D%22View%22%20id%3D%2212%22/%3E</map>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Button" x="161" y="69" w="121" h="36" measuredW="64" measuredH="27" zOrder="3" locked="false" isInGroup="0">
+          <controlProperties>
+            <href>View%26bm%3BView.bmml%26bm%3BView.bmml%26bm%3BView.bmml</href>
+            <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22161%2C69%2C282%2C105%22%20href%3D%22View.bmml%22%20alt%3D%22View%22%20id%3D%2214%22/%3E</map>
+            <text>Cancel</text>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::Button" x="15" y="69" w="121" h="36" measuredW="63" measuredH="27" zOrder="4" locked="false" isInGroup="0">
+          <controlProperties>
+            <href>Delete_deleted%26bm%3BDelete_deleted.bmml%26bm%3BDelete_deleted.bmml%26bm%3BDelete_deleted.bmml</href>
+            <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C69%2C136%2C105%22%20href%3D%22Delete_deleted.bmml%22%20alt%3D%22Delete_deleted%22%20id%3D%2215%22/%3E</map>
+            <text>Delete</text>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::Icon" x="34" y="30" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="5" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>AlertIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="74" y="34" w="-1" h="-1" measuredW="87" measuredH="21" zOrder="6" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Are%20you%20sure%3F</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

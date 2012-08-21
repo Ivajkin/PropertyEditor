@@ -1,0 +1,58 @@
+<mockup version="1.0" skin="sketch" measuredW="1526" measuredH="737" mockupW="1195" mockupH="700">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="331" y="37" w="1195" h="700" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Property%20Editor%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="795" y="145" w="267" h="125" measuredW="258" measuredH="115" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Property%2C%20Value%0Awidth%2C%20800%2C%20%20%20%20%20%2C%20%20%20%20%20%0Aheight%2C%20600%2C%0Atitle%2C%20%22GuruPoint%20project%22%2C</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="1077" y="145" w="-1" h="-1" measuredW="28" measuredH="45" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Add%26bm%3BAdd.bmml%26bm%3BAdd.bmml%26bm%3BAdd.bmml</href>
+        <icon>AddPageIcon%7Csmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22746%2C108%2C774%2C153%22%20href%3D%22Add.bmml%22%20alt%3D%22Add%22%20id%3D%222%22/%3E</map>
+        <text>Add</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Icon" x="1000" y="170" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Icon" x="1000" y="199" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Icon" x="1000" y="231" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Icon" x="1031" y="170" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>Trash2Icon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Icon" x="1031" y="199" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>Trash2Icon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Icon" x="1031" y="231" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10066329</color>
+        <icon>Trash2Icon%7Csmall</icon>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
