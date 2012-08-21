@@ -65,9 +65,9 @@
     <control controlID="12" controlTypeID="com.balsamiq.mockups::Icon" x="1031" y="260" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>10066329</color>
-        <href>Edit%26bm%3BEdit.bmml%26bm%3BEdit.bmml%26bm%3BEdit.bmml</href>
+        <href>Delete%26bm%3BDelete.bmml%26bm%3BDelete.bmml%26bm%3BDelete.bmml</href>
         <icon>Trash2Icon%7Csmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22700%2C223%2C724%2C247%22%20href%3D%22Edit.bmml%22%20alt%3D%22Edit%22%20id%3D%2212%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22700%2C223%2C724%2C247%22%20href%3D%22Delete.bmml%22%20alt%3D%22Delete%22%20id%3D%2212%22/%3E</map>
       </controlProperties>
     </control>
   </controls>

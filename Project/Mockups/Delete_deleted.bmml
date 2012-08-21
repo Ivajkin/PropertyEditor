@@ -12,9 +12,7 @@
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::IconLabel" x="1077" y="145" w="-1" h="-1" measuredW="28" measuredH="45" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>Add%26bm%3BAdd.bmml%26bm%3BAdd.bmml%26bm%3BAdd.bmml</href>
         <icon>AddPageIcon%7Csmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22746%2C108%2C774%2C153%22%20href%3D%22Add.bmml%22%20alt%3D%22Add%22%20id%3D%222%22/%3E</map>
         <text>Add</text>
       </controlProperties>
     </control>
