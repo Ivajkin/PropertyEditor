@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PerpetuumSoft.Knockout
+@model PropertyEditor.Models.Property
+           
+@{
+  var ko = Html.CreateKnockoutContext();
+}
+<!-- Page starts here -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ko.Html.Span(m => m.Name)</td>
+            <td>@ko.Html.Span(m => m.Value)</td>
+        </tr>
+    </tbody>
+</table>
+
+@ko.Apply(Model)
