@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Linq.Expressions;
+using System.ComponentModel.DataAnnotations;
 
 namespace PropertyEditor.Models
 {
     public enum property_type
     {
-        string_type,
-        integer_type
+        integer_type = 0,
+        string_type = 1
     }
     public class Property
     {
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
+
         public property_type Type { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Text)]
         public string Value { get; set; }
 
-        public Expression<Func<string>> TypeString()
+        public static string TypeString(property_type type)
         {
-            return () => (Type == property_type.integer_type ? "integer" : "string");
+            return type == property_type.integer_type ? "integer" : "string";
         }
     }
 
