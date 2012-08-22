@@ -15,3 +15,21 @@ Property:
 2. Добавление
 3. Редактирование
 4. Удаление
+
+
+PropertyEditor
+	Index
+	AddPanel
+	Add [POST]
+	EditPanel
+	Edit [POST]
+	RemoveConfirmationPanel
+	Remove [POST]
+
+return RedirectToAction("Index", "Home");
+
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "New password")]

@@ -21,16 +21,20 @@ namespace PropertyEditor.Controllers
                 Value = "800"
             });
         }
+
         // 
-        // GET: /PropertyEditor/AddProperty
-        public ActionResult AddProperty()
+        // GET: /PropertyEditor/AddPanel
+        public ActionResult AddPanel()
         {
-            return View(new Property
-            {
-                Name = "width",
-                Type = property_type.integer_type,
-                Value = "800"
-            });
+            return View();
+        }
+
+        // 
+        // POST: /PropertyEditor/Add
+        [HttpPost]
+        public ActionResult Add(Property property)
+        {
+            return View();
         }
 
     }
