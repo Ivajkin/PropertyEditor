@@ -22,8 +22,7 @@ namespace PropertyEditor.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            ViewDataDictionary viewData = result.ViewData;
-            Assert.AreEqual("Welcome to ASP.NET MVC!", viewData["Message"]);
+            Assert.AreEqual("Welcome to ASP.NET MVC!", result.ViewBag.Message);
         }
 
         [TestMethod]
