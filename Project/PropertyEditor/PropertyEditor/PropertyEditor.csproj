@@ -70,6 +70,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\PropertyDBContext.cs" />
