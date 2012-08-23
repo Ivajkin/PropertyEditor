@@ -32,6 +32,9 @@ namespace PropertyEditor
 
         protected void Application_Start()
         {
+            // Устанавливаю данные для примера
+            System.Data.Entity.Database.SetInitializer(new PropertyEditor.Models.PropertyData());
+
             ModelBinders.Binders.DefaultBinder = new KnockoutModelBinder();
 
             AreaRegistration.RegisterAllAreas();
