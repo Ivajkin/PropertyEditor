@@ -12,6 +12,16 @@ namespace PropertyEditor.Controllers
     {
         private PropertyDBContext db = new PropertyDBContext();
 
+        // Статус прошлого события для Index
+        public enum Status
+        {
+            add_success,
+            add_error,
+            edit_success,
+            edit_error,
+            delete_success
+        }
+
         // 
         // GET: /PropertyEditor/
         public ActionResult Index()
@@ -20,6 +30,7 @@ namespace PropertyEditor.Controllers
             return View(properties);
         }
 
+        #region add
         // 
         // GET: /PropertyEditor/AddPanel
         public ActionResult AddPanel()
@@ -42,14 +53,20 @@ namespace PropertyEditor.Controllers
 
             return View(status);
         }
+        #endregion
 
-        // Статус прошлого события для Index
-        public enum Status {
-            add_success,
-            add_error,
-            edit_success,
-            edit_error,
-            delete_success
+        #region delete
+        // 
+        // POST: /PropertyEditor/Delete
+        [HttpPost]
+        public ActionResult Delete(string Name)
+        {
+            db.Properties.Remove(db.Properties.First(m => m.Name == Name));
+            db.SaveChanges();
+            
+            Status status = Status.delete_success;
+            return View(status);
         }
+        #endregion
     }
 }

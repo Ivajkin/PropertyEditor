@@ -23,10 +23,19 @@
         {
             <tr>
                 <td>@ko.Html.Span(item.Name)</td>
-                <td>@ko.Html.Span(item.Type == PropertyEditor.Models.property_type.string_type ? "\"" + item.Value + "\"" : item.Value)</td>
+                <td>@{
+                        var str = item.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + item.Value + "\"" : item.Value;
+                        @str
+                    }
+                </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { Name=item.Name }) |
-                    @Html.ActionLink("Delete", "Delete", new { Name=item.Name })
+                    <button value="Edit">Edit</button>
+                </td>
+                <td>
+                    <form method="post" action="Delete">
+                        <input name="Name" type="hidden" value="@item.Name" />
+                        <button type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
         }

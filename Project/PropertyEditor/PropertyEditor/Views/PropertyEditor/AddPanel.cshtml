@@ -16,8 +16,8 @@
     <label>Name:</label><input name="Name" type="text" /> <br />
     <label>Type:</label>
     <select name="Type">
-        <option value="integer">integer</option>
-        <option value="string">string</option>
+        <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
+        <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
     </select> <br />
 
     <label>Value:</label><input name="Value" type="text" /> <br />

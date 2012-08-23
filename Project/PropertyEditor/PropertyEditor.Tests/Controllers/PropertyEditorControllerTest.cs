@@ -50,5 +50,44 @@ namespace PropertyEditor.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Delete()
+        {
+            // Arrange
+            PropertyEditorController controller = new PropertyEditorController();
+
+            // Act
+            ViewResult result = controller.Delete("width") as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void EditPanel()
+        {
+            // Arrange
+            PropertyEditorController controller = new PropertyEditorController();
+
+            // Act
+            ViewResult result = controller.EditPanel("height") as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Edit()
+        {
+            // Arrange
+            PropertyEditorController controller = new PropertyEditorController();
+
+            // Act
+            ViewResult result = controller.Edit(new PropertyEditor.Models.Property()) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
