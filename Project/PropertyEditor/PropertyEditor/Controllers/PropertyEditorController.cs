@@ -48,7 +48,7 @@ namespace PropertyEditor.Controllers
             try {
                 db.Properties.Add(property);
                 db.SaveChanges();
-            } catch(Exception e) {
+            } catch {
                 status = Status.add_error;
             }
 
@@ -91,7 +91,7 @@ namespace PropertyEditor.Controllers
                 db.Properties.Add(property);
                 db.SaveChanges();
             }
-            catch (Exception e)
+            catch
             {
                 status = Status.edit_error;
             }

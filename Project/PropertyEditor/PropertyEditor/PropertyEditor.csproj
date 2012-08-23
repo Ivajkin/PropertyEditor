@@ -158,6 +158,12 @@
     <Content Include="Views\PropertyEditor\Edit.cshtml" />
     <Content Include="Views\Shared\_PostEventForm.cshtml" />
     <None Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PropertyEditor\AddPanel.cshtml" />
