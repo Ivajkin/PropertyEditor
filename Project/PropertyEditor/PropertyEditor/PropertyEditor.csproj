@@ -140,10 +140,12 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\PropertyEditor\Delete.cshtml" />
+    <Content Include="Views\PropertyEditor\EditPanel.cshtml" />
+    <Content Include="Views\PropertyEditor\Edit.cshtml" />
+    <Content Include="Views\Shared\_PostEventForm.cshtml" />
     <None Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>

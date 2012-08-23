@@ -29,10 +29,13 @@
                     }
                 </td>
                 <td>
-                    <button value="Edit">Edit</button>
+                    <form method="get" action="/PropertyEditor/EditPanel">
+                        <input name="Name" type="hidden" value="@item.Name" />
+                        <button type="submit">Edit</button>
+                    </form>
                 </td>
                 <td>
-                    <form method="post" action="Delete">
+                    <form method="post" action="/PropertyEditor/Delete">
                         <input name="Name" type="hidden" value="@item.Name" />
                         <button type="submit">Delete</button>
                     </form>
@@ -43,5 +46,16 @@
 </table> <br />
 
 <button value="Add">@Html.ActionLink("Add", "AddPanel", "PropertyEditor")</button>
+
+<div id="message-box"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var param = getURLParameter('status');
+        $("#message-box").append(errorMessages4Status[param]);
+
+        $("#message-box").fadeOut(2000);
+    });
+</script>
 
 @ko.Apply(Model)

@@ -19,12 +19,13 @@ namespace PropertyEditor.Controllers
             add_error,
             edit_success,
             edit_error,
-            delete_success
+            delete_success,
+            ready
         }
 
         // 
         // GET: /PropertyEditor/
-        public ActionResult Index()
+        public ActionResult Index(int status = (int)Status.ready)
         {
             var properties = db.Properties.ToList();
             return View(properties);
@@ -61,10 +62,40 @@ namespace PropertyEditor.Controllers
         [HttpPost]
         public ActionResult Delete(string Name)
         {
-            db.Properties.Remove(db.Properties.First(m => m.Name == Name));
+            db.Properties.Remove(db.Properties.Single(m => m.Name == Name));
             db.SaveChanges();
             
             Status status = Status.delete_success;
+            return View(status);
+        }
+        #endregion
+
+        #region edit
+        // 
+        // GET: /PropertyEditor/EditPanel
+        public ActionResult EditPanel(string Name)
+        {
+            Property property = db.Properties.Single(p => p.Name == Name);
+            return View(property);
+        }
+
+        // 
+        // POST: /PropertyEditor/Edit
+        [HttpPost]
+        public ActionResult Edit(Property property)
+        {
+            Status status = Status.edit_success;
+            try
+            {
+                db.Properties.Remove(db.Properties.Single(p => p.Name == property.Name));
+                db.Properties.Add(property);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                status = Status.edit_error;
+            }
+
             return View(status);
         }
         #endregion

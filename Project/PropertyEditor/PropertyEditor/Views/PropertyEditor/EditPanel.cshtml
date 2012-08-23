@@ -1,5 +1,8 @@
-﻿@{
-    ViewBag.Title = "Add Property";
+﻿@model PropertyEditor.Models.Property
+
+@{
+    var title = "Edit property: \"" + Model.Name + "\"";
+    ViewBag.Title = title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,28 +11,30 @@
 @{
   var ko = Html.CreateKnockoutContext();
 }
-<!-- Page starts here -->
 
-<h2>Add property</h2>
+<h2>@title</h2>
 
-<form id="AddForm" action="Add" method="post">
-    <label for="Name">Name:</label><input id="Name" name="Name" type="text" /> <br />
+<form id="EditForm" action="Edit" method="post">
+
+    <input type="hidden" name="Name" value="@Model.Name" />
+
     <label for="Type">Type:</label>
     <select id="Type" name="Type">
-        <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
-        <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
+        <option @((int)PropertyEditor.Models.property_type.integer_type == Model.Type ? "selected=\"selected\"" : "") value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
+        <option @((int)PropertyEditor.Models.property_type.string_type == Model.Type ? "selected=\"selected\"" : "") value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
     </select> <br />
 
-    <label for="Value">Value:</label><input id="Value" name="Value" type="text" /> <br />
+    <label for="Value">Value:</label><input id="Value" name="Value" type="text" value="@Model.Value" /> <br />
 
-    <button id="AddFormSumbitButton" type="submit">Add</button>
+    <button id="EditFormSumbitButton" type="submit">Save</button>
 </form>
 
 
+
 <script type="text/javascript">
-    $(document).ready(function() {
-        
-        $("#AddForm").validate({
+    $(document).ready(function () {
+
+        $("#EditForm").validate({
             focusInvalid: false,
             focusCleanup: true,
             rules: {
@@ -57,5 +62,5 @@
                 }
             }
         });
-});
+    });
 </script>

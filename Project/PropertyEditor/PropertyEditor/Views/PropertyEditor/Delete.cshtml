@@ -1,6 +1,3 @@
-﻿@model PropertyEditor.Controllers.PropertyEditorController.Status
-
-@{
-    var url = "?status=" + Model.ToString();
-    Response.Redirect(url);
+﻿@{
+    Layout = "~/Views/Shared/_PostEventForm.cshtml";
 }
