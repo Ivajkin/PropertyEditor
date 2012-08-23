@@ -25,8 +25,8 @@
                 <td>@ko.Html.Span(item.Name)</td>
                 <td>@ko.Html.Span(item.Type == PropertyEditor.Models.property_type.string_type ? "\"" + item.Value + "\"" : item.Value)</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Name }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Name })
+                    @Html.ActionLink("Edit", "Edit", new { Name=item.Name }) |
+                    @Html.ActionLink("Delete", "Delete", new { Name=item.Name })
                 </td>
             </tr>
         }

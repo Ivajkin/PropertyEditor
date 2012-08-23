@@ -32,9 +32,24 @@ namespace PropertyEditor.Controllers
         [HttpPost]
         public ActionResult Add(Property property)
         {
-            db.Properties.Add(property);
-            return View();
+            Status status = Status.add_success;
+            try {
+                db.Properties.Add(property);
+                db.SaveChanges();
+            } catch(Exception e) {
+                status = Status.add_error;
+            }
+
+            return View(status);
         }
 
+        // Статус прошлого события для Index
+        public enum Status {
+            add_success,
+            add_error,
+            edit_success,
+            edit_error,
+            delete_success
+        }
     }
 }
