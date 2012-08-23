@@ -45,7 +45,11 @@ namespace PropertyEditor.Controllers
         public ActionResult Add(Property property)
         {
             Status status = Status.add_success;
-            try {
+            try
+            {
+                // Вызываем Parse для того, чтобы в случае, если строка property.Value не содержит валидное число, выбросить исключение.
+                int.Parse(property.Value);
+
                 db.Properties.Add(property);
                 db.SaveChanges();
             } catch {
@@ -87,6 +91,9 @@ namespace PropertyEditor.Controllers
             Status status = Status.edit_success;
             try
             {
+                // Вызываем Parse для того, чтобы в случае, если строка property.Value не содержит валидное число, выбросить исключение.
+                int.Parse(property.Value);
+
                 db.Properties.Remove(db.Properties.Single(p => p.Name == property.Name));
                 db.Properties.Add(property);
                 db.SaveChanges();
