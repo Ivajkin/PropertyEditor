@@ -16,7 +16,7 @@ namespace PropertyEditor.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
+            /*// Arrange
             PropertyEditorController controller = new PropertyEditorController();
 
             // Act
@@ -24,7 +24,7 @@ namespace PropertyEditor.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            //Assert.AreEqual("Welcome to ASP.NET MVC!", result.ViewBag.Message);
+            //Assert.AreEqual("Welcome to ASP.NET MVC!", result.ViewBag.Message);*/
         }
 
         [TestMethod]
