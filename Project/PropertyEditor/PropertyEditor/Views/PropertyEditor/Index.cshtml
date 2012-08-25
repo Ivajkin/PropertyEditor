@@ -7,7 +7,7 @@
 @model List<PropertyEditor.Models.Property>
            
 @{
-  var ko = Html.CreateKnockoutContext();
+    var ko = Html.CreateKnockoutContext();
 }
 <!-- Page starts here -->
 
@@ -16,45 +16,99 @@
         <tr>
             <th>Property</th>
             <th>Value</th>
+            <th>
+                <div class="button add-button" title="Add"></div>
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (PropertyEditor.Models.Property property in Model)
         {
-            <tr>
-                <td>@ko.Html.Span(item.Name)</td>
-                <td>@{
-                        var str = item.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + item.Value + "\"" : item.Value;
-                        @str
+            <tr class="editable">
+                <td class="property-name">
+                    @property.Name
+                </td>
+                <td>
+                    @{
+                        var valueStringified = (property.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + property.Value + "\"" : property.Value);
                     }
+                    <div class="value-field">@valueStringified</div>
+                    <input type="text" value="@valueStringified" />
                 </td>
+                        <!--<td>
+                            <form method="get" action="/PropertyEditor/EditPanel">
+                                <input name="Name" type="hidden" value="@@item.Name" />
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>-->
                 <td>
-                    <form method="get" action="/PropertyEditor/EditPanel">
-                        <input name="Name" type="hidden" value="@item.Name" />
-                        <button type="submit">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="/PropertyEditor/Delete">
-                        <input name="Name" type="hidden" value="@item.Name" />
-                        <button type="submit">Delete</button>
-                    </form>
+                    <div class="button delete-button" title="Delete"></div>
                 </td>
             </tr>
         }
     </tbody>
 </table> <br />
 
-<button value="Add">@Html.ActionLink("Add", "AddPanel", "PropertyEditor")</button>
+<!--<button value="Add">
+    <div id="add-button" class="button" title="Add property"></div>
+    @@Html.ActionLink("Add", "AddPanel", "PropertyEditor")
+</button>-->
 
 <div id="message-box"></div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var param = getURLParameter('status');
-        $("#message-box").append(errorMessages4Status[param]);
 
-        $("#message-box").fadeOut(2000);
+        var errorMessages4Status = {
+            add_success: "Property successfully added",
+            add_error: "Wrong property name",
+            edit_success: "Property successfully edited",
+            edit_error: "Error during property edit",
+            delete_success: "Property successfully deleted",
+            ready: ""
+        };
+
+        // --------------------------------------------------------+
+        // Статус текущего действия.
+        function showStatus(status) {
+            $("#message-box")
+                .empty()
+                .append(errorMessages4Status[status])
+                .fadeIn("fast")
+                .fadeOut(4000);
+        }
+
+        // --------------------------------------------------------+
+        // Удаление параметра.
+        $(".delete-button").click(function () {
+            var row = $(this).parent().parent();
+            var propertyName = row.find('.property-name').text();
+
+
+            // Удаляем DOM элемент
+            row.remove();
+
+            // Посылаем запрос на удаление объекта из базы данных.
+            $.post('/PropertyEditor/Delete',
+                { Name: propertyName },
+                function (status) {
+                    showStatus(status);
+                });
+        });
+
+        // --------------------------------------------------------+
+        // Добавление.
+        $(".add-button").click(function () {
+            window.open("/PropertyEditor/AddPanel", "_self");
+        });
+
+        // --------------------------------------------------------+
+        // Прячем поля ввода.
+        $(".editable input").hide();
+        $(".editable").click(function () {
+            $(this).find('input').show();
+            $(this).find('#value-field').hide();
+        });
     });
 </script>
 

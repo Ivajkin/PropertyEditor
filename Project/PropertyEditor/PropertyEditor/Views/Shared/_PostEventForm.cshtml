@@ -1,7 +1,5 @@
-﻿
-@model PropertyEditor.Controllers.PropertyEditorController.Status
-
+﻿@model PropertyEditor.Controllers.PropertyEditorController.Status
 @{
-    var url = "?status=" + Model.ToString();
-    Response.Redirect(url);
+    Response.Write(Model.ToString());
+    RenderBody();
 }

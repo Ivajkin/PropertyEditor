@@ -7,19 +7,6 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/knockout.mapping-latest.js")" type="text/javascript"></script>
-    <script type="text/javascript">
-        var errorMessages4Status = {
-            add_success: "Property successfully added",
-            add_error: "Wrong property name",
-            edit_success: "Property successfully edited",
-            edit_error: "Error during property edit",
-            delete_success: "Property successfully deleted",
-            ready: ""
-        };
-        function getURLParameter(name) {
-            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
-        }
-    </script>
 </head>
 <body>
     <div class="page">
