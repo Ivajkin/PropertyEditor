@@ -25,15 +25,12 @@
         @foreach (PropertyEditor.Models.Property property in Model)
         {
             <tr class="editable">
-                <td class="property-name">
-                    @property.Name
-                </td>
+                <td class="property-name">@property.Name</td>
                 <td>
                     @{
                         var valueStringified = (property.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + property.Value + "\"" : property.Value);
                     }
                     <div class="value-field">@valueStringified</div>
-                    <input type="text" value="@valueStringified" />
                 </td>
                         <!--<td>
                             <form method="get" action="/PropertyEditor/EditPanel">
@@ -103,11 +100,85 @@
         });
 
         // --------------------------------------------------------+
+        // Изменение.
+        $(".editable").click(function () {
+            var row = $(this);
+            var propertyName = row.find('.property-name').text();
+
+            window.open("/PropertyEditor/EditPanel?Name=" + propertyName, "_self");
+        });
+
+        /*// --------------------------------------------------------+
         // Прячем поля ввода.
         $(".editable input").hide();
         $(".editable").click(function () {
-            $(this).find('input').show();
-            $(this).find('#value-field').hide();
+        $(this).find('input').show();
+        $(this).find('.value-field').hide();
+        });
+
+        // Сохранение измененных данных.
+        function save_editable() {
+        var row = $(this);
+        var propertyName = row.find('.property-name').text();
+
+        $.post('/PropertyEditor/Edit',
+        { Name: propertyName,  },
+        function (status) {
+        showStatus(status);
+        });
+        }
+        $(".editable input").focusout(save_editable.bind(this));
+        $(".editable input").keydown(function (event) {
+        if (event.which == 13) {
+        (save_editable.bind(this))();
+        }
+        } .bind(this));*/
+
+        // --------------------------------------------+
+        // Форма добавления параметров.
+        $("#AddForm").validate({
+            focusInvalid: false,
+            focusCleanup: true,
+            rules: {
+                Name: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 17
+                },
+                Value: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 17
+                }
+            },
+            messages: {
+                Name: {
+                    required: "Укажите название параметра!",
+                    minlength: "Не менее 2 символов",
+                    maxlength: "Не более 17 символов"
+                },
+                Value: {
+                    required: "Укажите значение параметра!",
+                    minlength: "Не менее 2 символов",
+                    maxlength: "Не более 17 символов"
+                }
+            }
+        });
+
+        $("#AddFormSumbitButton").click(function () {
+            var Name = $("#Name").value(),
+                            Type = $("#Type").value(),
+                            Value = $("#Value").value();
+            // Посылаем запрос на создание объекта в базе данных.
+            $.post('/PropertyEditor/Add',
+                            {
+                                Name: Name,
+                                Type: Type,
+                                Value: Value
+                            },
+                            function (status) {
+                                showStatus(status);
+                            });
         });
     });
 </script>
