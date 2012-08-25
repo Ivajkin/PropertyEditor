@@ -25,22 +25,20 @@
         @foreach (PropertyEditor.Models.Property property in Model)
         {
             <tr class="editable">
-                <td class="property-name">@property.Name</td>
+                <td>@property.Name</td>
                 <td>
                     @{
                         var valueStringified = (property.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + property.Value + "\"" : property.Value);
                     }
-                    <div class="value-field">@valueStringified</div>
+                    <div>@valueStringified</div>
                 </td>
-                        <!--<td>
-                            <form method="get" action="/PropertyEditor/EditPanel">
-                                <input name="Name" type="hidden" value="@@item.Name" />
-                                <button type="submit">Edit</button>
-                            </form>
-                        </td>-->
                 <td>
                     <div class="button delete-button" title="Delete"></div>
                 </td>
+                
+                <td class="invisible-container property-name">@property.Name</td>
+                <td class="invisible-container property-value">@property.Value</td>
+                <td class="invisible-container property-type">@property.Type</td>
             </tr>
         }
     </tbody>
@@ -65,6 +63,10 @@
             ready: ""
         };
 
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+        }
+
         // --------------------------------------------------------+
         // Статус текущего действия.
         function showStatus(status) {
@@ -74,6 +76,8 @@
                 .fadeIn("fast")
                 .fadeOut(4000);
         }
+        var status = getURLParameter("status");
+        showStatus(status);
 
         // --------------------------------------------------------+
         // Удаление параметра.
@@ -96,43 +100,8 @@
         // --------------------------------------------------------+
         // Добавление.
         $(".add-button").click(function () {
-            window.open("/PropertyEditor/AddPanel", "_self");
+            setAddDialogVisibility(true);
         });
-
-        // --------------------------------------------------------+
-        // Изменение.
-        $(".editable").click(function () {
-            var row = $(this);
-            var propertyName = row.find('.property-name').text();
-
-            window.open("/PropertyEditor/EditPanel?Name=" + propertyName, "_self");
-        });
-
-        /*// --------------------------------------------------------+
-        // Прячем поля ввода.
-        $(".editable input").hide();
-        $(".editable").click(function () {
-        $(this).find('input').show();
-        $(this).find('.value-field').hide();
-        });
-
-        // Сохранение измененных данных.
-        function save_editable() {
-        var row = $(this);
-        var propertyName = row.find('.property-name').text();
-
-        $.post('/PropertyEditor/Edit',
-        { Name: propertyName,  },
-        function (status) {
-        showStatus(status);
-        });
-        }
-        $(".editable input").focusout(save_editable.bind(this));
-        $(".editable input").keydown(function (event) {
-        if (event.which == 13) {
-        (save_editable.bind(this))();
-        }
-        } .bind(this));*/
 
         // --------------------------------------------+
         // Форма добавления параметров.
@@ -140,24 +109,24 @@
             focusInvalid: false,
             focusCleanup: true,
             rules: {
-                Name: {
+                "Name-Add": {
                     required: true,
                     minlength: 2,
                     maxlength: 17
                 },
-                Value: {
+                "Value-Add": {
                     required: true,
                     minlength: 2,
                     maxlength: 17
                 }
             },
             messages: {
-                Name: {
+                "Name-Add": {
                     required: "Укажите название параметра!",
                     minlength: "Не менее 2 символов",
                     maxlength: "Не более 17 символов"
                 },
-                Value: {
+                "Value-Add": {
                     required: "Укажите значение параметра!",
                     minlength: "Не менее 2 символов",
                     maxlength: "Не более 17 символов"
@@ -165,20 +134,88 @@
             }
         });
 
-        $("#AddFormSumbitButton").click(function () {
-            var Name = $("#Name").value(),
-                            Type = $("#Type").value(),
-                            Value = $("#Value").value();
-            // Посылаем запрос на создание объекта в базе данных.
-            $.post('/PropertyEditor/Add',
-                            {
-                                Name: Name,
-                                Type: Type,
-                                Value: Value
-                            },
-                            function (status) {
-                                showStatus(status);
-                            });
+        /*$("#AddFormSumbitButton").click(function () {
+        var Name = $("#Name").value(),
+        Type = $("#Type").value(),
+        Value = $("#Value").value();
+        // Посылаем запрос на создание объекта в базе данных.
+        $.post('/PropertyEditor/Add',
+        {
+        Name: Name,
+        Type: Type,
+        Value: Value
+        },
+        function (status) {
+        setAddDialogVisibility(false);
+        showStatus(status);
+        });
+        });*/
+        function setAddDialogVisibility(isVisible) {
+            if (isVisible) {
+                $("#add-dialog-container").show();
+            } else {
+                $(".dialog-container").hide();
+            }
+        }
+        setAddDialogVisibility(false);
+
+        // --------------------------------------------+
+        // Форма изменения параметров.
+        $("#EditForm").validate({
+            focusInvalid: false,
+            focusCleanup: true,
+            rules: {
+                "Name-Edit": {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 12
+                },
+                "Value-Edit": {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 12
+                }
+            },
+            messages: {
+                "Name-Edit": {
+                    required: "Укажите название параметра!",
+                    minlength: "Не менее 2 символов",
+                    maxlength: "Не более 12 символов"
+                },
+                "Value-Edit": {
+                    required: "Укажите значение параметра!",
+                    minlength: "Не менее 2 символов",
+                    maxlength: "Не более 12 символов"
+                }
+            }
+        });
+        function setEditDialogVisibility(isVisible) {
+            if (isVisible) {
+                $("#edit-dialog-container").show();
+            } else {
+                $(".dialog-container").hide();
+            }
+        }
+        // --------------------------------------------------------+
+        // Изменение.
+        $(".editable").click(function () {
+            var row = $(this);
+            var propertyName = row.find('.property-name').text();
+            var propertyType = row.find('.property-type').text();
+            var propertyValue = row.find('.property-value').text();
+
+            setEditDialogVisibility(true);
+            $("#Name-Edit").attr("value", propertyName);
+            $("#Value-Edit").attr("value", propertyValue);
+            $("#property-name-Edit").text("Edit property: \"" + propertyName + "\"");
+            $("#Type-Edit [value='" + propertyType + "']").attr("selected", "selected");
+        });
+
+        // Скрываем диалог при нажатии за его пределы.
+        $(".dialog-container").click(function (e) {
+            if (this == e.target) {
+                $(".dialog-container").hide();
+            }
         });
     });
 </script>

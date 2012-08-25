@@ -33,17 +33,41 @@
     <div id="add-dialog-container" class="dialog-container">
         <div class="dialog-body">
             <h2>Add property</h2>
-            <form id="AddForm">
-                <label for="Name">Name:</label><input id="Name" name="Name" type="text" /> <br />
-                <label for="Type">Type:</label>
-                <select id="Type" name="Type">
+            <form id="AddForm" action="/PropertyEditor/Add" method="post">
+                <label for="Name-Add">Name:</label>
+                <input id="Name-Add" name="Name" type="text" /> <br />
+
+                <label for="Type-Add">Type:</label>
+                <select id="Type-Add" name="Type">
                     <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
                     <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
                 </select> <br />
 
-                <label for="Value">Value:</label><input id="Value" name="Value" type="text" /> <br />
+                <label for="Value-Add">Value:</label>
+                <input id="Value-Add" name="Value" type="text" /> <br />
 
                 <button id="AddFormSumbitButton" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <div id="edit-dialog-container" class="dialog-container">
+        <div class="dialog-body">
+
+            <h2 id="property-name-Edit">Edit property: ~~~</h2>
+
+            <form id="EditForm" action="/PropertyEditor/Edit" method="post">
+                <input type="hidden" id="Name-Edit" name="Name" />
+                
+                <label for="Type-Edit">Type:</label>
+                <select id="Type-Edit" name="Type">
+                    <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
+                    <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
+                </select> <br />
+                
+                <label for="Value-Edit">Value:</label>
+                <input id="Value-Edit" name="Value" type="text" /> <br />
+                
+                <button id="EditFormSumbitButton" type="submit">Save</button>
             </form>
         </div>
     </div>

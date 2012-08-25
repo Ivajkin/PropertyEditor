@@ -392,7 +392,7 @@ div#title {
 {
     background: #fff;
     width: 300px;
-    height: 200px;
+    height: 250px;
     padding: 1px 0 0 30px;
     margin: 120px auto auto auto;
 }
@@ -408,4 +408,9 @@ div#title {
 .dialog-body select
 {
     width: 206px;
+}
+
+.invisible-container
+{
+    display: none;
 }

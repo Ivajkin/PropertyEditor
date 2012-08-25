@@ -1,3 +1,5 @@
-﻿@{
-    Layout = "~/Views/Shared/_PostEventForm.cshtml";
+﻿@model PropertyEditor.Controllers.PropertyEditorController.Status
+@{
+    Response.Write(Model.ToString());
+    RenderBody();
 }

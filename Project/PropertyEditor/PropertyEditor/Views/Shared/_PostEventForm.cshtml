@@ -1,5 +1,4 @@
 ﻿@model PropertyEditor.Controllers.PropertyEditorController.Status
 @{
-    Response.Write(Model.ToString());
-    RenderBody();
+    Response.Redirect("/?status=" + Model);
 }
