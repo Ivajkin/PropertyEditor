@@ -106,62 +106,58 @@ $(document).ready(function () {
     }
     setAddDialogVisibility(false);
 
-    // --------------------------------------------+
-    // Форма изменения параметров.
-    $("#EditForm").validate({
-        focusInvalid: false,
-        focusCleanup: true,
-        rules: {
-            "Name-Edit": {
-                required: true,
-                minlength: 2,
-                maxlength: 12
-            },
-            "Value-Edit": {
-                required: true,
-                minlength: 2,
-                maxlength: 12
-            }
-        },
-        messages: {
-            "Name-Edit": {
-                required: "Укажите название параметра!",
-                minlength: "Не менее 2 символов",
-                maxlength: "Не более 12 символов"
-            },
-            "Value-Edit": {
-                required: "Укажите значение параметра!",
-                minlength: "Не менее 2 символов",
-                maxlength: "Не более 12 символов"
-            }
-        }
-    });
-    function setEditDialogVisibility(isVisible) {
-        if (isVisible) {
-            $("#edit-dialog-container").show();
-        } else {
-            $(".dialog-container").hide();
-        }
-    }
     // --------------------------------------------------------+
     // Изменение.
-    $(".editable").click(function () {
-        var row = $(this);
-        var propertyName = row.find('.property-name').text();
-        var propertyType = row.find('.property-type').text();
-        var propertyValue = row.find('.property-value').text();
 
-        setEditDialogVisibility(true);
-        $("#Name-Edit").attr("value", propertyName);
-        $("#Value-Edit").attr("value", propertyValue);
-        $("#property-name-Edit").text("Edit property: \"" + propertyName + "\"");
-        $("#Type-Edit [value='" + propertyType + "']").attr("selected", "selected");
-    });
+    function saveProperty(property) {
+        $.post("/PropertyEditor/Edit",
+                property,
+                function () {
+                    alert("Success?");
+                });
+    }
 
-    // Скрываем диалог при нажатии за его пределы.
-    $(".dialog-container").click(function (e) {
-        if (this == e.target) {
-            $(".dialog-container").hide();
+    function setEdit(element, enable) {
+        var parent = $(element).parent();
+        var input = parent.find("input.property-value"),
+            div = parent.find("div.property-value");
+        if (enable) {
+            $("input.property-value").hide();
+            $("div.property-value").show();
+            input.show();
+            div.hide();
+            $("div.property-value").click(inputEvents.edit);
+            $(element).unbind('click');
+        } else {
+            input.hide();
+            div.show();
+            $("div.property-value").click(inputEvents.edit);
         }
-    });
+    }
+    var inputEvents = {
+        edit: function () {
+            setEdit(this, true);
+        },
+        save: function () {
+            setEdit(this, false);
+
+            var parent = $(this).parent().parent();
+            var input = parent.find("input.property-value");
+            var nameDOM = parent.find(".hidden-property-name");
+            var typeDOM = parent.find(".hidden-property-type");
+
+            // Сам процесс сохранения
+            var property = {
+                name: nameDOM.text(),
+                type: typeDOM.text(),
+                value: input.attr("value")
+            };
+            saveProperty(property);
+        }
+    };
+    $("div.property-value").click(inputEvents.edit);
+    $("input.property-value").change(inputEvents.save);
+
+    // Скрываем поле ввода.
+    $("input.property-value").hide();
 });

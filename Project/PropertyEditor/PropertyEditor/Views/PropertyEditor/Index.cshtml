@@ -9,7 +9,7 @@
 @{
     var ko = Html.CreateKnockoutContext();
 }
-<!-- Page starts here -->
+<!-- ---------------------------------------------------------------------------------- -->
 
 <table>
     <thead>
@@ -30,24 +30,20 @@
                     @{
                         var valueStringified = (property.Type == (int)PropertyEditor.Models.property_type.string_type ? "\"" + property.Value + "\"" : property.Value);
                     }
-                    <div>@valueStringified</div>
+                    <div class="property-value">@valueStringified</div>
+                    <input class="property-value" type="text" value="@property.Value" />
                 </td>
+
                 <td>
                     <div class="button delete-button" title="Delete"></div>
                 </td>
                 
-                <td class="invisible-container property-name">@property.Name</td>
-                <td class="invisible-container property-value">@property.Value</td>
-                <td class="invisible-container property-type">@property.Type</td>
+                <td class="invisible-container hidden-property-name">@property.Name</td>
+                <td class="invisible-container hidden-property-type">@property.Type</td>
             </tr>
         }
     </tbody>
 </table> <br />
-
-<!--<button value="Add">
-    <div id="add-button" class="button" title="Add property"></div>
-    @@Html.ActionLink("Add", "AddPanel", "PropertyEditor")
-</button>-->
 
 <div id="message-box"></div>
 
