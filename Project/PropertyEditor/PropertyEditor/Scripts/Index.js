@@ -30,7 +30,7 @@ $(document).ready(function () {
     // Удаление параметра.
     $(".delete-button").click(function () {
         var row = $(this).parent().parent();
-        var propertyName = row.find('.property-name').text();
+        var propertyName = row.find('.hidden-property-name').text();
 
 
         // Удаляем DOM элемент
@@ -105,15 +105,21 @@ $(document).ready(function () {
         }
     }
     setAddDialogVisibility(false);
-
+    // Скрываем диалог при нажатии за его пределы.
+    $(".dialog-container").click(function (e) {
+        if (this == e.target) {
+            $(".dialog-container").hide();
+        }
+    });
     // --------------------------------------------------------+
     // Изменение.
 
-    function saveProperty(property) {
+    function saveProperty(property, callback) {
         $.post("/PropertyEditor/Edit",
                 property,
-                function () {
-                    alert("Success?");
+                function (status) {
+                    showStatus(status);
+                    callback(status == "edit_success");
                 });
     }
 
@@ -145,6 +151,17 @@ $(document).ready(function () {
             var input = parent.find("input.property-value");
             var nameDOM = parent.find(".hidden-property-name");
             var typeDOM = parent.find(".hidden-property-type");
+            var textFieldDOM = parent.find("div.property-value");
+
+            // Меняем видимое значение и подготавливаем функции для отката, если ответ от базы будет отрицательный
+            var oldValue = textFieldDOM.text();
+            textFieldDOM.tearDown = function (oldValue) {
+                this.text(oldValue);
+            } .bind(textFieldDOM, oldValue);
+            input.tearDown = textFieldDOM.tearDown.bind(input);
+            var text = input.attr("value");
+            if (typeDOM.text() == 1) { text = "\"" + text + "\""; }
+            textFieldDOM.text(text);
 
             // Сам процесс сохранения
             var property = {
@@ -152,7 +169,12 @@ $(document).ready(function () {
                 type: typeDOM.text(),
                 value: input.attr("value")
             };
-            saveProperty(property);
+            saveProperty(property, function (textField, input, saved) {
+                if (!saved) {
+                    textField.tearDown();
+                    input.tearDown();
+                }
+            } .bind(this, textFieldDOM, input));
         }
     };
     $("div.property-value").click(inputEvents.edit);

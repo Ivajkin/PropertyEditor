@@ -374,6 +374,11 @@ div#title {
     margin: 120px auto auto auto;
 }
 
+.dialog-body table, .dialog-body table td
+{
+    border: none 0px #fff;
+}
+
 .dialog-body input, .dialog-body select
 {
     margin-left: 3px;

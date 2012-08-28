@@ -26,40 +26,45 @@
         <div class="dialog-body">
             <h2>Add property</h2>
             <form id="AddForm" action="/PropertyEditor/Add" method="post">
-                <label for="Name-Add">Name:</label>
-                <input id="Name-Add" name="Name" type="text" /> <br />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="Name-Add">Name:</label>
+                            </td>
+                            <td>
+                            <input id="Name-Add" name="Name" type="text" />
+                            </td>
+                        </tr>
 
-                <label for="Type-Add">Type:</label>
-                <select id="Type-Add" name="Type">
-                    <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
-                    <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
-                </select> <br />
-
-                <label for="Value-Add">Value:</label>
-                <input id="Value-Add" name="Value" type="text" /> <br />
-
-                <button id="AddFormSumbitButton" type="submit">Add</button>
-            </form>
-        </div>
-    </div>
-    <div id="edit-dialog-container" class="dialog-container">
-        <div class="dialog-body">
-
-            <h2 id="property-name-Edit">Edit property: ~~~</h2>
-
-            <form id="EditForm" action="/PropertyEditor/Edit" method="post">
-                <input type="hidden" id="Name-Edit" name="Name" />
-                
-                <label for="Type-Edit">Type:</label>
-                <select id="Type-Edit" name="Type">
-                    <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
-                    <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
-                </select> <br />
-                
-                <label for="Value-Edit">Value:</label>
-                <input id="Value-Edit" name="Value" type="text" /> <br />
-                
-                <button id="EditFormSumbitButton" type="submit">Save</button>
+                        <tr>
+                            <td>
+                                <label for="Type-Add">Type:</label>
+                            </td>
+                            <td>
+                                <select id="Type-Add" name="Type">
+                                    <option value="@((int)PropertyEditor.Models.property_type.integer_type)">integer</option>
+                                    <option value="@((int)PropertyEditor.Models.property_type.string_type)">string</option>
+                                </select>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label for="Value-Add">Value:</label>
+                            </td>
+                            <td>
+                                <input id="Value-Add" name="Value" type="text" />
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <button id="AddFormSumbitButton" type="submit">Add</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     </div>
